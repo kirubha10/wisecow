@@ -15,7 +15,7 @@ RUN apt-get update && \
 COPY wisecow.sh /var/lib/jenkins/workspace/wisecow/wisecow.sh
 
 # Make the script executable
-RUN chmod +x /usr/local/bin/your_script.sh
+RUN chmod +x /var/lib/jenkins/workspace/wisecow/wisecow.sh
 
 # Expose the port the script will run on
 EXPOSE 4499
