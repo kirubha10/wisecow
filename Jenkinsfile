@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("wisecow-image")
+                    docker build -t wisecow-image -f /var/lib/jenkins/workspace/wisecow/Dockerfile .
                 }
             }
         }
