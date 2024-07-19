@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'docker-cred') {
-                        docker.image("wisecow-image").push("latest")
+                        docker.image("kirubha2020/wisecow-image").push("latest")
                     }
                 }
             }
