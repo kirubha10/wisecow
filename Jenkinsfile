@@ -15,7 +15,7 @@ pipeline {
                  dir('/var/lib/jenkins/workspace/wisecow') {
                      script {
                         withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                            sh "docker build -t kirubha2020/wisecow:version$BUILD_NUMBER Docker ."
+                            sh "docker build -t kirubha2020/wisecow:version$BUILD_NUMBER ."
                             }
                                  
                   }
