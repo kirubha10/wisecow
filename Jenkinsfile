@@ -23,8 +23,8 @@ pipeline {
          stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-cred') {
-                        docker.image("kirubha2020/wisecow-image").push("latest")
+                    docker.withRegistry('kirubha2020/wisecow', 'docker-cred') {
+                        docker.image("wisecow-image").push("latest")
                     }
                 }
             }
