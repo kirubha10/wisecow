@@ -1,0 +1,24 @@
+# Use an official Ubuntu as a parent image
+FROM ubuntu:latest
+
+
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y \
+    bash \
+    cowsay \
+    fortune && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy your script into the Docker container
+COPY wisecow.sh /var/lib/jenkins/workspace/wisecow/wisecow.sh
+
+# Make the script executable
+RUN chmod +x /usr/local/bin/your_script.sh
+
+# Expose the port the script will run on
+EXPOSE 4499
+
+# Run the script
+CMD ["bash", "/var/lib/jenkins/workspace/wisecow/wisecow.sh"]
