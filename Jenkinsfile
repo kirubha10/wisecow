@@ -11,12 +11,13 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker build -t wisecow-image -f /var/lib/jenkins/workspace/wisecow/Dockerfile .
+                 // Navigate to the workspace directory
+                 dir('/var/lib/jenkins/workspace/wisecow') {
+                 // Build the Docker image
+                 docker.build('wisecow-image', '-f Dockerfile .')
+                  }
                 }
-            }
-        }
-
-       
-       
+             }
+        } 
     }
 }
