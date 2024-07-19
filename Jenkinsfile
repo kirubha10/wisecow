@@ -14,7 +14,7 @@ pipeline {
                  // Navigate to the workspace directory
                  dir('/var/lib/jenkins/workspace/wisecow') {
                  // Build the Docker image   
-                             docker.build('wisecow-image', '-f Docker .')
+                             docker.build('wisecow', '-f Docker .')
                   }
                 }
              }
@@ -23,8 +23,8 @@ pipeline {
          stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('kirubha2020/wisecow', 'docker-cred') {
-                        docker.image("wisecow-image").push("latest")
+                    docker.withRegistry('https://index.docker.io/v1/','docker-cred') {
+                        docker.image("kirubha2020/wisecow").push("latest")
                     }
                 }
             }
