@@ -14,7 +14,9 @@ pipeline {
                  // Navigate to the workspace directory
                  dir('/var/lib/jenkins/workspace/wisecow') {
                  // Build the Docker image
-                 docker.build('wisecow-image', '-f Docker .')
+                     withDockerRegistry(credentialsId: 'docker-cred') {
+                             docker.build('wisecow-image', '-f Docker .')
+                      }
                   }
                 }
              }
