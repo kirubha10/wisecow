@@ -13,16 +13,21 @@ pipeline {
                 script {
                  // Navigate to the workspace directory
                  dir('/var/lib/jenkins/workspace/wisecow') {
-                     script {
-                        withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                            sh "docker build -t kirubha2020/wisecow:version$BUILD_NUMBER ."
-                            }
-                                 
+                 // Build the Docker image   
+                             docker.build('kirubha2020/wisecow', '-f Docker .')
                   }
                 }
              }
         } 
 
+         stage('Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/','docker-cred') {
+                        docker.image("kirubha2020/wisecow").push("latest")
+                    }
+                }
+            }
         }
 
         
