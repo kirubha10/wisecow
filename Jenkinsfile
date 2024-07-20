@@ -29,15 +29,18 @@ pipeline {
                 }
             }
         }
-       stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    sh 'kubectl apply -f kubernetes/cluster-role-binding.yaml'
-                    sh 'kubectl apply -f kubernetes/deployment.yaml'
-                    sh 'kubectl apply -f kubernetes/service.yaml'
-                }
-            }
-        }
+                stage('Deployed to kubernetes') {
+                steps {
+                  withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '',
+                    credentialsId: 'k8-cred', namespace: 'wisecow', restrictKubeConfigAccess: false, serverUrl:
+                       'https://10.10.2.3:6443') {
+                           sh 'kubectl apply -f deployment-service.yaml'
+                        }
+                      }
+                    }
+
+      
+
         
     }
 }
