@@ -39,7 +39,16 @@ pipeline {
                         }
                       }
                     }
-
+               stage('Verify the Deployment') {
+                 steps {
+                  withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '',
+                   credentialsId: 'k8-cred', namespace: 'wisecow', restrictKubeConfigAccess: false, serverUrl:
+                     'https://10.10.2.3:6443') {
+                              sh "kubectl get pods -n webapps"
+                              sh "kubectl get svc -n webapps"
+                         }
+                   }
+           }
       
 
         
