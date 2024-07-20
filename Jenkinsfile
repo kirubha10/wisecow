@@ -34,7 +34,8 @@ pipeline {
                   withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '',
                     credentialsId: 'k8-cred', namespace: 'wisecow', restrictKubeConfigAccess: false, serverUrl:
                        'https://10.10.2.3:6443') {
-                           sh 'kubectl apply -f deployment-service.yaml'
+                           sh 'kubectl apply -f kubernetes/deployment.yaml'
+                           sh 'kubectl apply -f kubernetes/deployment.yaml'
                         }
                       }
                     }
